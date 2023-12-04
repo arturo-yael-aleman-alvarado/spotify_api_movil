@@ -241,6 +241,7 @@ class _topState extends State<top> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
+                SizedBox(height: 45,),
                 Container(
                   width: size.width * 0.95,
                   height: size.height * 0.10,

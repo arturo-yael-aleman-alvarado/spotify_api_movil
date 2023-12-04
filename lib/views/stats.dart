@@ -260,12 +260,14 @@ Future<Map<String, dynamic>> getArtistDetails(String accessToken, String artistI
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
              children: <Widget>[
+              SizedBox(height: 30,),
               Container(
                 width: size.width * 0.95,
-                height: size.height * 0.08,
+                height: size.height * 0.13,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
+                    SizedBox(height: 10,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
@@ -275,10 +277,11 @@ Future<Map<String, dynamic>> getArtistDetails(String accessToken, String artistI
                             // Acción al hacer clic 
                           },
                         ),
+                        
                         Container(
                           alignment: Alignment.center,
                 width: size.height * 0.3,
-                height: size.height * 0.10,
+                height: size.height * 0.07,
                child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                        children:<Widget>[ AutoSizeText(
@@ -309,6 +312,7 @@ Future<Map<String, dynamic>> getArtistDetails(String accessToken, String artistI
                   ],
                 ),
               ),
+              SizedBox(height: 10,),
               Container(
                 width: size.width * 0.95,
                 height: size.height * 0.12,

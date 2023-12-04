@@ -204,7 +204,7 @@ Future<List<String>> getSongImages(String accessToken, List<String> songIds) asy
                                 String aut = await _getAuthorizationCode();
                                 print(aut);
                                 log("yo");
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => home(token: 'BQDOO1tGNl_otq6b5NkbprreRCHVk_KZqOUrNPxNl5OYOOMq1HfDGB0EelKeSp1dyrB0p-YHF8efCh6U4sVECpSCQm3yMuMCiMTsxGOlCR6bYYZA9A2OSqp2_gCusQMt2T9dJg-vGWPM5ly4_hIlbaWU9_85PV_qXmdrjaUxnbV_bswkKFXk0ZevjuXRrEVQFFwVQUQVheM',)));
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => home(token: 'BQDlYHxkqt8-R332F10_Oh0DP1t04nqISUaZ0nVYNTrVZSn3hU1bM7Y-GpaBm4VtesKMmCd1bWbvvDz-VoNrK8nyC5STf2_kILG0B84tbEtHI_iE6oKXV8ZX0PcHm8vgBA9tGAiy6DIcVzZckvQCKcn41Wk8swzh1vLTz_E_pcRG_V2wpBWfrhhqpOm4TpsINKuVYmUU5PE',)));
                               },
                               style: ElevatedButton.styleFrom(
                                 shape: RoundedRectangleBorder(

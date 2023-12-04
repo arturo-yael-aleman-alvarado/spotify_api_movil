@@ -270,6 +270,7 @@ class _registroState extends State<home> {
                               child: CircularProgressIndicator(),
                             )
                           : Container(),
+                          SizedBox(height: 45,),
                       Container(
                         child: Wrap(
                           alignment: WrapAlignment.center,

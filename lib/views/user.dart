@@ -67,92 +67,86 @@ Future<Map<String, dynamic>> getUserProfile(String accessToken) async {
   }
 }
 
-   @override
+  @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    return MaterialApp(
-     debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        backgroundColor: singleton.dark_theme ? Colors.white : Colors.black,
-        body: FutureBuilder(
-          future: userDataFuture,
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            } else if (snapshot.hasError) {
-              return Center(
-                child: Text('Error: ${snapshot.error}'),
-              );
-            } else {
-              return
-        Center(
-          child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-             children: <Widget>[SizedBox(height: 50,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        
-                        IconButton(
-                          icon: Icon(Icons.arrow_back, color: !singleton.dark_theme ? cons.white : cons.black),
-                          onPressed: () {
+  final size = MediaQuery.of(context).size;
+  return MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: Scaffold(
+      backgroundColor: singleton.dark_theme ? Colors.white : Colors.black,
+      body: FutureBuilder(
+        future: userDataFuture,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (snapshot.hasError) {
+            return Center(
+              child: Text('Error: ${snapshot.error}'),
+            );
+          } else {
+            return SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  SizedBox(height: 45,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      IconButton(
+                        icon: Icon(Icons.arrow_back, color: !singleton.dark_theme ? cons.white : cons.black),
+                        onPressed: () {
                           setState(() {
                             Navigator.push(context, MaterialPageRoute(builder: (context) => home( token: super.widget.tooken, )));
-
                           });
-                          },
+                        },
+                      ),
+                      Text(
+                        'Profile',
+                        style: TextStyle(color: !singleton.dark_theme ? cons.white : cons.black, fontSize: 20),
+                      ),
+                      IconButton(
+                        icon: Icon(Icons.person, color: singleton.dark_theme ? cons.white : cons.black),
+                        onPressed: () {},
+                      ),
+                    ],
+                  ),
+                  Center(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center, // Alinea en el centro horizontalmente
+                      children: <Widget>[
+                        SizedBox(height: size.height * 0.04),
+                        CircleAvatar(
+                          radius: size.width * 0.15,
+                          backgroundImage: (userdata!['images'].length==0) ?  AssetImage('assets/profile_image.jpg') as ImageProvider : NetworkImage(userdata!['images'][0]['url']) as ImageProvider,
                         ),
+                        SizedBox(height: size.height * 0.02),
+                        SizedBox(height: 20),
                         Text(
-                          'Profile',
-                          style: TextStyle(color: singleton.dark_theme ? cons.white : cons.black, fontSize: 20),
+                          userdata!['display_name'],
+                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: !singleton.dark_theme ? cons.white : cons.black),
                         ),
-                        IconButton(
-                          icon: Icon(Icons.person, color: singleton.dark_theme ? cons.white : cons.black),
-                          onPressed: () {
-                          },
+                        SizedBox(height: 10,),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          child: Text(
+                            (userdata!['email']!=null) ? userdata!['email'] : 'No access to email',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(fontSize: 16, color: !singleton.dark_theme ? cons.white : cons.black),
+                          ),
                         ),
-
+                        SizedBox(height: 20),
                       ],
                     ),
-SizedBox(width: size.width*1,
-height: size.height*0.04),
-            CircleAvatar(
-              radius: size.width*0.15,
-              backgroundImage: (userdata!['images'].length==0) ?  AssetImage('assets/profile_image.jpg') as ImageProvider : NetworkImage(userdata!['images'][0]['url']) as ImageProvider, // Reemplaza con tu imagen de perfil
-            ),
-             SizedBox(height: size.height * 0.02),
-                      SizedBox(height: 20),
-
-            // Nombre de usuario
-            Text(
-              userdata!['display_name'],
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-
-            SizedBox(height: 10),
-
-            // Información del perfil
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Text(
-                (userdata!['email']!=null) ? userdata!['email'] : 'No acces to email',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16),
-              ),
-            ),
-
-            SizedBox(height: 20),
-
-            // Botones de acciones
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(primary: Colors.green),
-                  onPressed: () {
+                  ),
+                  SizedBox(height: 50,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(primary: Colors.green),
+                        onPressed: () {
                           setState(() {
                             if (singleton.dark_theme == true) {
                               singleton.dark_theme = false;
@@ -160,23 +154,19 @@ height: size.height*0.04),
                               singleton.dark_theme = true;
                             }
                           });
-                  },
-                  child: Text('Change theme',style: TextStyle(color: cons.white),),
-                  
+                        },
+                        child: Text('Change theme', style: TextStyle(color: cons.white),),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 20),
+                  // Detalles adicionales o estadísticas
+                  ],
                 ),
-              ],
-            ),
-
-            SizedBox(height: 20),
-
-            // Detalles adicionales o estadísticas
-            ],
-
-          ),
-          ),
-        );};
-  })
-
+              );
+            }
+          },
+        ),
       ),
     );
   }
